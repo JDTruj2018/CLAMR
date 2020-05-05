@@ -1,0 +1,30 @@
+#PBS -lnodes=1:ppn=8
+#PBS -lwalltime=24:00:00
+#PBS -S /bin/bash
+#PBS -N CLAMR_OpenMP
+
+cd $PBS_O_WORKDIR
+
+module load openmpi-3.1.4-gcc-4.8.5-hee7qt7
+module load cmake-3.15.4-gcc-4.8.5-ia6h24x
+module load hdf5-1.10.5-gcc-4.8.5-openmpi-462ttjb
+module load image-magick-7.0.5-9-gcc-4.8.5-python2-xzyy5cz
+module load gcc-8.3.0-gcc-4.8.5-wwpinbr
+
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 10 |& tee Results/openmponly_n10.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 20 |& tee Results/openmponly_n20.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 30 |& tee Results/openmponly_n30.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 40 |& tee Results/openmponly_n40.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 50 |& tee Results/openmponly_n50.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 60 |& tee Results/openmponly_n60.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 70 |& tee Results/openmponly_n70.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 80 |& tee Results/openmponly_n80.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 90 |& tee Results/openmponly_n90.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 100 |& tee Results/openmponly_n100.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 250 |& tee Results/openmponly_n250.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 500 |& tee Results/openmponly_n500.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 1000 |& tee Results/openmponly_n1000.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 2000 |& tee Results/openmponly_n2000.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 5000 |& tee Results/openmponly_n5000.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_openmponly -n 8000 |& tee Results/openmponly_n8000.txt
+

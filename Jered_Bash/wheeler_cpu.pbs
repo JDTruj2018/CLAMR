@@ -1,0 +1,30 @@
+#PBS -lnodes=1:ppn=8
+#PBS -lwalltime=24:00:00
+#PBS -S /bin/bash
+#PBS -N CLAMR_CPU
+
+cd $PBS_O_WORKDIR
+
+module load openmpi-3.1.4-gcc-4.8.5-hee7qt7
+module load cmake-3.15.4-gcc-4.8.5-ia6h24x
+module load hdf5-1.10.5-gcc-4.8.5-openmpi-462ttjb
+module load image-magick-7.0.5-9-gcc-4.8.5-python2-xzyy5cz
+module load gcc-8.3.0-gcc-4.8.5-wwpinbr
+
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 10 |& tee Results/cpuonly_n10.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 20 |& tee Results/cpuonly_n20.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 30 |& tee Results/cpuonly_n30.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 40 |& tee Results/cpuonly_n40.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 50 |& tee Results/cpuonly_n50.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 60 |& tee Results/cpuonly_n60.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 70 |& tee Results/cpuonly_n70.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 80 |& tee Results/cpuonly_n80.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 90 |& tee Results/cpuonly_n90.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 100 |& tee Results/cpuonly_n100.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 250 |& tee Results/cpuonly_n250.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 500 |& tee Results/cpuonly_n500.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 1000 |& tee Results/cpuonly_n1000.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 2000 |& tee Results/cpuonly_n2000.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 5000 |& tee Results/cpuonly_n5000.txt
+stdbuf -i0 -o0 -e0 ./build/clamr_cpuonly -n 8000 |& tee Results/cpuonly_n8000.txt
+
