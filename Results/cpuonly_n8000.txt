@@ -1,0 +1,23 @@
+Mass of initialized cells equal to  670925043.649
+CPU:  setup time               time was	170.9080	s
+Memory used      in startup 	   6257680	kB
+Memory peak      in startup 	         0	kB
+Memory free      at startup 	  33935116	kB
+Memory available at startup 	  49449332	kB
+Iteration   0 timestep      n/a Sim Time      0.0 cells 64040916 Mass Sum  670925043.649
+Iteration 100 timestep 0.000426 Sim Time 0.056844 cells 64065564 Mass Sum  670925043.649 Mass Change            0
+Iteration 200 timestep 0.000404 Sim Time 0.098227 cells 64077816 Mass Sum  670925043.649 Mass Change            0
+Iteration 300 timestep 0.000397 Sim Time 0.138227 cells 64083336 Mass Sum  670925043.649 Mass Change            0
+Iteration 400 timestep 0.000393 Sim Time 0.177596 cells 64084080 Mass Sum  670925043.649 Mass Change            0
+Iteration 500 timestep 0.000392 Sim Time 0.216752 cells 64083336 Mass Sum  670925043.649 Mass Change            0
+Iteration 600 timestep 0.000393 Sim Time 0.255920 cells 64081620 Mass Sum  670925043.649 Mass Change            0
+Iteration 700 timestep 0.000396 Sim Time 0.295306 cells 64078056 Mass Sum  670925043.649 Mass Change            0
+Iteration 800 timestep 0.000398 Sim Time 0.334952 cells 64073868 Mass Sum  670925043.649 Mass Change            0
+Iteration 900 timestep 0.000400 Sim Time 0.374881 cells 64072644 Mass Sum  670925043.649 Mass Change            0
+Iteration 1000 timestep 0.000402 Sim Time 0.415013 cells 64069644 Mass Sum  670925043.649 Mass Change            0
+Iteration 1100 timestep 0.000403 Sim Time 0.455292 cells 64068312 Mass Sum  670925043.649 Mass Change            0
+Iteration 1200 timestep 0.000403 Sim Time 0.495611 cells 64066812 Mass Sum  670925043.649 Mass Change            0
+Iteration 1300 timestep 0.000402 Sim Time 0.535924 cells 64062936 Mass Sum  670925043.649 Mass Change  1.19209e-07
+Iteration 1400 timestep 0.000402 Sim Time 0.576161 cells 64058256 Mass Sum  670925043.649 Mass Change  1.19209e-07
+Iteration 1500 timestep 0.000401 Sim Time 0.616313 cells 64056132 Mass Sum  670925043.649 Mass Change  1.19209e-07
+Iteration 1600 timestep 0.000400 Sim Time 0.656369 cells 64055832 Mass Sum  670925043.649 Mass Change  1.19209e-07

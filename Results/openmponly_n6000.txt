@@ -1,0 +1,12 @@
+--- max num openmp threads: 8
+--- num openmp threads in parallel region: 8
+Mass of initialized cells equal to   377395350.38
+CPU:  setup time               time was	 93.8927	s
+Memory used      in startup 	   3804028	kB
+Memory peak      in startup 	   8027184	kB
+Memory free      at startup 	  39687912	kB
+Memory available at startup 	  49449332	kB
+Iteration   0 timestep      n/a Sim Time      0.0 cells 36030756 Mass Sum   377395350.38
+Iteration 100 timestep 0.000425 Sim Time 0.056833 cells 36049404 Mass Sum   377395350.38 Mass Change            0
+Iteration 200 timestep 0.000404 Sim Time 0.098245 cells 36058080 Mass Sum   377395350.38 Mass Change            0
+Iteration 300 timestep 0.000396 Sim Time 0.138301 cells 36062712 Mass Sum   377395350.38 Mass Change            0
