@@ -12145,6 +12145,7 @@ void Mesh::calc_face_list_wbidirmap(void)
         map_xface2cell_lower[iface] = nl;
         map_xface2cell_upper[iface] = nz;
         map_xcell2face_left1[nz] = iface;
+        //if (nz == 104 && mype==0) printf("If Statement: 104 -> iface: %d\n", iface);
         map_xcell2face_right1[nl] = iface;
         iface++;
       }
@@ -12164,6 +12165,7 @@ void Mesh::calc_face_list_wbidirmap(void)
       //} else {
       //   xface_j[iface] = j[nr]*ifactor;
       //}
+
       map_xcell2face_right1[nz] = iface;
 
       //the right is a real cell, but I am left boundary
@@ -12194,9 +12196,13 @@ void Mesh::calc_face_list_wbidirmap(void)
    cpu_timers[MESH_TIMER_BIDIRPART2] += cpu_timer_stop(tstart_cpu_part);
    cpu_timer_start(&tstart_cpu_part);
 
-   for (int nz=0; nz<(int)ncells; nz++){
+   //if (mype == 0 && ncells >= 104) printf("Between Loops, 104 -> map_xcell2face_left1[nz]: %d\n", map_xcell2face_left1[104]);
+
+   for (int nz=0; nz<(int)ncells_ghost; nz++){
       int nl = nlft[nz];
-      if (nl == nz || nl <= -1) continue;
+      //if (mype == 0 && nz == 104) printf("nl: %d\n", nl);
+
+      if (nl == nz || nl <= -1 || nl >= ncells) continue;
 
       if (level[nl] < level[nz] && is_upper(j[nz]) && nbot[nz] != nz){
          map_xcell2face_left1[nz] = map_xcell2face_right2[nl];
@@ -12218,6 +12224,7 @@ void Mesh::calc_face_list_wbidirmap(void)
    cpu_timers[MESH_TIMER_BIDIRPART3] += cpu_timer_stop(tstart_cpu_part);
    cpu_timer_start(&tstart_cpu_part);
 
+   //if (mype == 0 && ncells >= 104) printf("Done with Loop, 104 -> map_xcell2face_left1[nz]: %d\n", map_xcell2face_left1[104]);
    //
    cpu_timer_start(&tstart_cpu_part);
 
@@ -12277,12 +12284,14 @@ void Mesh::calc_face_list_wbidirmap(void)
    nyface = iface;
    printf("Rank: %d\tnyface: %d\n", mype, iface);
 
+   printf("Rank: %d\tncells: %d\tncells_ghost:%d\n", mype, ncells, ncells_ghost);
+
    cpu_timers[MESH_TIMER_BIDIRPART5] += cpu_timer_stop(tstart_cpu_part);
    cpu_timer_start(&tstart_cpu_part);
 
-   for (int nz=0; nz<(int)ncells; nz++){
+   for (int nz=0; nz<(int)ncells_ghost; nz++){
       int nb = nbot[nz];
-      if (nb == nz || nb <= -1) continue;
+      if (nb == nz || nb <= -1 || nb >= ncells) continue;
       //if (nz == 3) printf("%d %d\n", map_ycell2face_top1[nb], map_ycell2face_top2[nb]);
 
       if (level[nb] < level[nz] && is_upper(i[nz]) && nlft[nz] != nz){
@@ -12302,7 +12311,7 @@ void Mesh::calc_face_list_wbidirmap(void)
    }
 
 
-   if (mype == 1) {
+   if (mype == 0) {
    for (int ic = 0; ic < ncells; ic++) {
        //printf("%d) %d %d %d %d %d %d %d %d\n", ic, nlft[ic], nrht[ic], nbot[ic], ntop[ic], map_xcell2face_left1[ic], map_xcell2face_right1[ic], map_ycell2face_bot1[ic], map_ycell2face_top1[ic]);
    }

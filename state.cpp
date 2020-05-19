@@ -3100,7 +3100,7 @@ void State::calc_finite_difference_via_faces(double deltaT)
 
 #ifdef HAVE_MPI
       //if (mesh->mype == 1)
-      //  printf("%d) %d %d %d %d\n", ic, fl, fr, fb, ft);
+        //printf("%d) %d %d %d %d\n", ic, fl, fr, fb, ft);
 #endif
 
       // set the four neighboring cells
