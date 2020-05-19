@@ -445,10 +445,10 @@ extern "C" void do_calc(void)
          mesh->set_bounds(ncells);
 
          //  Execute main kernel
-         state->calc_finite_difference(deltaT);
+         state->calc_finite_difference_via_faces(deltaT);
 
          if (do_comparison_calc) {
-            state_global->calc_finite_difference(deltaT);
+            state_global->calc_finite_difference_via_faces(deltaT);
 
 #ifdef _OPENMP
 #pragma omp barrier
