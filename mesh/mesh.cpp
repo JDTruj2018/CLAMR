@@ -12053,6 +12053,50 @@ void Mesh::calc_face_list_wbidirmap(void)
    struct timespec tstart_cpu_part;
    cpu_timer_start(&tstart_cpu_part);
 
+    int xfaceCnt = 0;
+    int yfaceCnt = 0;
+    for (int nz = 0; nz < (int)ncells; nz++) {
+        int nl = nlft[nz];
+        int nr = nrht[nz];
+        int nb = nbot[nz];
+        int nt = ntop[nz];
+#ifdef HAVE_MPI
+        if (nl >= ncells) 
+            xfaceCnt ++;
+        if (nb >= ncells)
+            yfaceCnt ++;
+#endif
+        if (nz == nl || nz == nr || nz == nb || nz == nt) {
+            if (nz != nr) xfaceCnt ++;
+            if (nz != nt) yfaceCnt ++;
+            continue;
+        }
+
+        int lev = level[nz];
+        //int ll = level[nl];
+        int lr = level[nr];
+        //int lb = level[nb];
+        int lt = level[nt];
+        if (lev < lr) {
+            xfaceCnt += 2;
+        }
+        else {
+            xfaceCnt ++;
+        }
+        if (lev < lt) {
+            yfaceCnt += 2;
+        }
+        else {
+            yfaceCnt ++;
+        }
+    }
+    nxface = xfaceCnt;
+    nyface = yfaceCnt;
+    printf("[%d] %d %d %d\n", mype, ncells_ghost, nxface, nyface);
+    //for (int ic = 0; ic < ncells_ghost; ic++) {
+        //if (mype == 0) printf("[%d] (%d) %d %d %d %d %d\n", mype, ic, (ic < ncells), nlft[ic], nrht[ic], nbot[ic], ntop[ic]);
+    //}
+
     // realloc memory based on new counts
 
     int flags=0;
@@ -12190,9 +12234,6 @@ void Mesh::calc_face_list_wbidirmap(void)
       
    }
 
-   nxface = iface;
-   printf("Rank: %d\tnxface: %d\n", mype, iface);
-
    cpu_timers[MESH_TIMER_BIDIRPART2] += cpu_timer_stop(tstart_cpu_part);
    cpu_timer_start(&tstart_cpu_part);
 
@@ -12280,9 +12321,6 @@ void Mesh::calc_face_list_wbidirmap(void)
          }
       }
    }
-
-   nyface = iface;
-   printf("Rank: %d\tnyface: %d\n", mype, iface);
 
    printf("Rank: %d\tncells: %d\tncells_ghost:%d\n", mype, ncells, ncells_ghost);
 
